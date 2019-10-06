@@ -1,4 +1,5 @@
 import re
+
 from .locators import ProductPagaLocators
 from ExampleSeleniumProject.pages.base_page import BasePage
 
