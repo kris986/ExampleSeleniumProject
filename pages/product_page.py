@@ -1,6 +1,6 @@
 import re
 
-from .locators import ProductPagaLocators
+from .locators import ProductPagaLocators, BasePageLocators
 from ExampleSeleniumProject.pages.base_page import BasePage
 
 
@@ -28,18 +28,18 @@ class ProductPage(BasePage):
         assert self.is_element_presents(*ProductPagaLocators.BUTTON_ADD_TO_WISHLIST)
 
     def should_be_product_info(self):
-        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_GALLERY), 'Product gallery is not present on page'
-        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_PRICE), 'Product price is not present on page'
-        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_TITLE), 'Product title is not present on page'
+        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_GALLERY), 'Product gallery IS NOT present on page'
+        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_PRICE), 'Product price IS NOT present on page'
+        assert self.is_element_presents(*ProductPagaLocators.PRODUCT_TITLE), 'Product title IS NOT present on page'
 
     def should_be_msg_added_to_basket(self):
         assert self.is_element_presents(
-            *ProductPagaLocators.SUCCESS_MSG_ADDED_TO_BASKET), 'Success message about adding to basket is not present on page'
+            *ProductPagaLocators.SUCCESS_MSG_ADDED_TO_BASKET), 'Success message about adding to basket IS NOT present on page'
         assert self.is_element_presents(
-            *ProductPagaLocators.ALERT_MSG_AMOUN_BASKET), 'Amount of basket in alert message is not present on page'
+            *ProductPagaLocators.ALERT_MSG_AMOUN_BASKET), 'Amount of basket in alert message IS NOT present on page'
         product_title_in_success_msg = self.browser.find_element(*ProductPagaLocators.SUCCESS_MSG_ADDED_TO_BASKET).text
         product_title = self.browser.find_element(*ProductPagaLocators.PRODUCT_TITLE).text
-        assert product_title == product_title_in_success_msg, 'Product title added to basket  is not correct'
+        assert product_title == product_title_in_success_msg, 'Product title added to basket  IS NOT correct'
 
     def should_be_correct_amount_basket(self):
         pattern = r'(?:\d+.?\d*)'
@@ -47,10 +47,18 @@ class ProductPage(BasePage):
         msg_amount_of_basket = \
             re.findall(pattern, self.browser.find_element(*ProductPagaLocators.ALERT_MSG_AMOUN_BASKET).text)[0]
         amount_of_basket_in_header = \
-            re.findall(pattern, self.browser.find_element(*ProductPagaLocators.AMOUNT_OF_BASKET_IN_HEADER).text)[0]
-        assert product_price == amount_of_basket_in_header, "Amount of basket is not equal product's price"
-        assert product_price == msg_amount_of_basket, "Amount of basket in alert message is not equal product's price"
+            re.findall(pattern, self.browser.find_element(*BasePageLocators.AMOUNT_OF_BASKET_IN_HEADER).text)[0]
+        assert product_price == amount_of_basket_in_header, "Amount of basket IS NOT equal product's price"
+        assert product_price == msg_amount_of_basket, "Amount of basket in alert message IS NOT equal product's price"
 
     def should_be_general_elems_on_page(self):
         assert self.is_element_presents(
-            *ProductPagaLocators.AMOUNT_OF_BASKET_IN_HEADER), 'There is not basket block in the header'
+            *BasePageLocators.AMOUNT_OF_BASKET_IN_HEADER), 'There IS NOT basket block in the header'
+
+    def should_be_not_scs_msg_adding_to_basket(self):
+        assert self.is_not_element_present(
+            *ProductPagaLocators.SUCCESS_MSG_ADDED_TO_BASKET), 'Success message about adding to basket iS present on page, but should not be'
+
+    def should_disappear_success_msg(self):
+        assert self.is_disappeared(
+            *ProductPagaLocators.SUCCESS_MSG_ADDED_TO_BASKET), 'Success message about adding to basket iS NOT disappeard from page'
