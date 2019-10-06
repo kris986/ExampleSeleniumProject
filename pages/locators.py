@@ -18,7 +18,11 @@ class LoginPageLocators:
 
 
 class ProductPagaLocators:
+    PRODUCT_TITLE = (By.CSS_SELECTOR, 'div.product_main > h1')
     BUTTON_ADD_TO_BASKET = (By.CSS_SELECTOR, 'form#add_to_basket_form > button.btn-add-to-basket')
     BUTTON_ADD_TO_WISHLIST = (By.CSS_SELECTOR, 'button.btn.btn-lg.btn-wishlist')
     PRODUCT_GALLERY = (By.CSS_SELECTOR, 'div#product_gallery')
     PRODUCT_PRICE = (By.CSS_SELECTOR, 'div.product_main > p.price_color')
+    SUCCESS_MSG_ADDED_TO_BASKET = (By.CSS_SELECTOR, 'div#messages div.alert-success:nth-child(1) strong')
+    ALERT_MSG_AMOUN_BASKET = (By.CSS_SELECTOR, 'div#messages div.alert-info strong')
+    AMOUNT_OF_BASKET_IN_HEADER = (By.CSS_SELECTOR, 'div.basket-mini')

@@ -1,5 +1,3 @@
-from .pages.base_page import BasePage
-from .pages.locators import LoginPageLocators
 from .pages.product_page import ProductPage
 
 
@@ -10,6 +8,5 @@ def test_guest_can_add_product_to_basket(browser):
     product_page.should_be_product_page()
     product_page.add_product_to_basket()
     product_page.solve_quiz_and_get_code()
-
-
-
+    product_page.should_be_msg_added_to_basket()
+    product_page.should_be_correct_amount_basket()
