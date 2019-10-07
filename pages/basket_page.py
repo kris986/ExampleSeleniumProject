@@ -1,4 +1,5 @@
 from .locators import BasePageLocators, BasketPageLocators
+
 from .base_page import BasePage
 
 
@@ -34,4 +35,3 @@ class BasketPage(BasePage):
 
     def should_not_be_msg_about_empty_basket(self):
         assert self.is_not_element_present(*BasketPageLocators.MESSAGE_CONTINIE_SHOPPING)
-
