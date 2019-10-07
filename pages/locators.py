@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class BasePageLocators:
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
     AMOUNT_OF_BASKET_IN_HEADER = (By.CSS_SELECTOR, 'div.basket-mini')
     BASKET_LINK = (By.CSS_SELECTOR, 'div.basket-mini > span a')
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -33,7 +34,8 @@ class LoginPageLocators:
 class ProductPageLocators:
     ALERT_MSG_AMOUNT_BASKET = (By.CSS_SELECTOR, 'div#messages div.alert-info strong')
     BUTTON_ADD_TO_BASKET = (By.CSS_SELECTOR, 'form#add_to_basket_form > button.btn-add-to-basket')
-    BUTTON_ADD_TO_WISHLIST = (By.CSS_SELECTOR, 'button.btn.btn-lg.btn-wishlist')
+    BUTTON_ADD_TO_WISHLIST_GUEST = (By.CSS_SELECTOR, 'button.btn.btn-lg.btn-wishlist')
+    BUTTON_ADD_TO_WISHLIST_USER = (By.CSS_SELECTOR, 'form#add_to_wishlist_form button.btn.btn-lg')
     PRODUCT_TITLE = (By.CSS_SELECTOR, 'div.product_main > h1')
     PRODUCT_GALLERY = (By.CSS_SELECTOR, 'div#product_gallery')
     PRODUCT_PRICE = (By.CSS_SELECTOR, 'div.product_main > p.price_color')

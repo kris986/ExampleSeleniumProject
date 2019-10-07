@@ -24,8 +24,10 @@ class ProductPage(BasePage):
         assert match, 'Product URL is not correct'
 
     def should_be_wishlist_and_add_basket_buttons(self):
-        assert self.is_element_presents(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        assert self.is_element_presents(*ProductPageLocators.BUTTON_ADD_TO_WISHLIST)
+        assert self.is_element_presents(
+            *ProductPageLocators.BUTTON_ADD_TO_BASKET), 'Button for addint to basket IS NOT present on page'
+        assert self.is_element_presents(*ProductPageLocators.BUTTON_ADD_TO_WISHLIST_GUEST) or self.is_element_presents(
+            *ProductPageLocators.BUTTON_ADD_TO_WISHLIST_USER), 'Button for adding to wishlist IS NOT present on page'
 
     def should_be_product_info(self):
         assert self.is_element_presents(*ProductPageLocators.PRODUCT_GALLERY), 'Product gallery IS NOT present on page'
@@ -36,7 +38,7 @@ class ProductPage(BasePage):
         assert self.is_element_presents(
             *ProductPageLocators.SUCCESS_MSG_ADDED_TO_BASKET), 'Success message about adding to basket IS NOT present on page'
         assert self.is_element_presents(
-            *ProductPageLocators.ALERT_MSG_AMOUN_BASKET), 'Amount of basket in alert message IS NOT present on page'
+            *ProductPageLocators.ALERT_MSG_AMOUNT_BASKET), 'Amount of basket in alert message IS NOT present on page'
         product_title_in_success_msg = self.browser.find_element(*ProductPageLocators.SUCCESS_MSG_ADDED_TO_BASKET).text
         product_title = self.browser.find_element(*ProductPageLocators.PRODUCT_TITLE).text
         assert product_title == product_title_in_success_msg, 'Product title added to basket  IS NOT correct'
@@ -45,7 +47,7 @@ class ProductPage(BasePage):
         pattern = r'(?:\d+.?\d*)'
         product_price = re.findall(pattern, self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text)[0]
         msg_amount_of_basket = \
-            re.findall(pattern, self.browser.find_element(*ProductPageLocators.ALERT_MSG_AMOUN_BASKET).text)[0]
+            re.findall(pattern, self.browser.find_element(*ProductPageLocators.ALERT_MSG_AMOUNT_BASKET).text)[0]
         amount_of_basket_in_header = \
             re.findall(pattern, self.browser.find_element(*BasePageLocators.AMOUNT_OF_BASKET_IN_HEADER).text)[0]
         assert product_price == amount_of_basket_in_header, "Amount of basket IS NOT equal product's price"

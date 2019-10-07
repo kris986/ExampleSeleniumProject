@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators
+from .locators import LoginPageLocators, BasePageLocators
 
 
 class LoginPage(BasePage):
@@ -33,3 +33,14 @@ class LoginPage(BasePage):
             *LoginPageLocators.REGISTRATION_REPEAT_INPUT_PASSWORD), 'Reapeat password input for registration  is not presented'
         assert self.is_element_presents(
             *LoginPageLocators.REGISTRATION_BUTTON_SUBMIT), 'Submit button for registration  is not presented'
+
+    def register_new_user(self, email, password):
+        user_email_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_INPUT_EMAIL)
+        user_email_input.send_keys(email)
+        password_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_INPUT_PASSWORD)
+        password_input.send_keys(password)
+        password_repeat_input = self.browser.find_element(*LoginPageLocators.REGISTRATION_REPEAT_INPUT_PASSWORD)
+        password_repeat_input.send_keys(password)
+        button = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON_SUBMIT)
+        button.click()
+        assert self.is_element_presents(*BasePageLocators.USER_ICON)
