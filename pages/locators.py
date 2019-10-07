@@ -11,7 +11,8 @@ class BasePageLocators:
 
 class BasketPageLocators:
     BASKET_SUMMARY_FORM = (By.CSS_SELECTOR, 'form#basket_formset')
-    MESSAGE_CONTINIE_SHOPPING = (By.CSS_SELECTOR, 'div#content_inner>p>a') # "Continue shopping" link is used like a maker of empty basket
+    # "Continue shopping" link is used like a maker of empty basket
+    MESSAGE_CONTINIE_SHOPPING = (By.CSS_SELECTOR, 'div#content_inner>p>a')
 
 
 class LocatorsMainPage:
