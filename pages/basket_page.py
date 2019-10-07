@@ -13,7 +13,7 @@ class BasketPage(BasePage):
 
     def should_be_basket_url(self):
         page_url = self.browser.current_url
-        assert page_url.find('/login/') != -1, 'Basket URL is not correct'
+        assert page_url.find('/basket/') != -1, 'Basket URL is not correct'
 
     def should_be_basket_head(self):
         assert self.is_element_presents(*BasePageLocators.PAGE_HEADER), 'Header of basket IS NOT present on page'

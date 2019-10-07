@@ -22,9 +22,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_basket_page()
     basket_page.should_be_empty_basket()
-
-    # Ожидаем, что в корзине нет товаров
-    # Ожидаем, что есть текст о том что корзина пуста
-
-
-
