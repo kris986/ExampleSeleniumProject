@@ -7,7 +7,6 @@ from ExampleSeleniumProject.pages.base_page import BasePage
 class ProductPage(BasePage):
 
     def add_product_to_basket(self):
-        # Описать метод для добавления в корзину
         button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         button.click()
 

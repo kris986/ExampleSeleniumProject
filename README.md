@@ -1,1 +1,1 @@
-# ExampleSeleniumProject
+# UI tests for selenium1py.pythonanywhere.com
