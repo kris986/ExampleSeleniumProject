@@ -1,7 +1,7 @@
 import re
 
 from .locators import ProductPageLocators, BasePageLocators
-from ExampleSeleniumProject.pages.base_page import BasePage
+from .base_page import BasePage
 
 
 class ProductPage(BasePage):

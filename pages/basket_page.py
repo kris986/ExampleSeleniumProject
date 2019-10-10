@@ -18,7 +18,6 @@ class BasketPage(BasePage):
     def should_be_basket_head(self):
         assert self.is_element_presents(*BasePageLocators.PAGE_HEADER), 'Header of basket IS NOT present on page'
 
-
     def should_be_empty_basket(self):
         self.should_be_msg_about_empty_basket(),  'Message about empty  basket IS NOT present on page'
         self.should_not_be_summury_of_order(), 'Message about empty  basket IS NOT present on page'
